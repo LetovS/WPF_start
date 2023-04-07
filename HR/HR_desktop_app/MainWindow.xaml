@@ -10,6 +10,65 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="10" TextElement.FontSize="15">
+            <Label HorizontalAlignment="Center" Margin="2" Content="Some question"/>
+            <Button Content="Variant 1" Margin="20,2"/>
+            <Button Content="Variant 2" Margin="20,2"/>
+            <Button Content="Variant 3" Margin="20,2"/>
+        </StackPanel>
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="Red" BorderThickness="2" Margin="2" Background="Yellow">
+            <StackPanel Orientation="Horizontal" TextElement.FontSize="20" HorizontalAlignment="Center">
+                <Button Content="Some"/>
+                <Button Content="Some" Margin="15"/>
+                <Button Content="Some" Padding="15"/>
+                <Button Content="Some" Margin="5,30,5,30"/>
+            </StackPanel>
+        </Border>
+        <WrapPanel Grid.Row="2" Grid.Column="0" Margin="15" Orientation="Vertical" ItemHeight="30" ItemWidth="45">
+            <Button Background="Indigo" Content="1" Margin="5"/>
+            <Button Background="Red" Content="2" Margin="5"/>
+            <Button Background="LightBlue" Content="3" Margin="5"/>
+            <Button Background="DarkGreen" Content="4" Margin="5"/>
+            <Button Background="Orange" Content="5"  Margin="5"/>
+        </WrapPanel>
+        <DockPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock DockPanel.Dock="Top" Text="First block" Background="Orange"/>
+            <TextBlock DockPanel.Dock="Bottom" Text="Second block" Background="Red"/>
+            <TextBlock DockPanel.Dock="Left" Text="Third block" Background="Green"/>
+            <TextBlock DockPanel.Dock="Right" Text="Four block" Background="Blue"/>
+            <TextBlock Text="Other place"/>
+        </DockPanel>
+        <Border Grid.Column="1" Grid.Row="1" BorderBrush="Blue" BorderThickness="5" Margin="20,5">
+            <UniformGrid  Rows="3" Columns="3">
+                <Button Background="Gray"/>
+                <Button Background="White"/>
+                <Button Background="Gray"/>
+                <Button Background="White"/>
+                <Button Background="Gray"/>
+                <Button Background="White"/>
+                <Button Background="Gray"/>
+                <Button Background="White"/>
+                <Button Background="Gray"/>
+            </UniformGrid>
+        </Border>
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <RadioButton GroupName="Languages" Content="C#" IsChecked="True" />
+            <RadioButton GroupName="Languages" Content="VB.NET" />
+            <RadioButton GroupName="Languages" Content="C++" />
+            <RadioButton GroupName="Technologies" Content="WPF" IsChecked="True" />
+            <RadioButton GroupName="Technologies" Content="WinForms" />
+            <RadioButton GroupName="Technologies" Content="ASP.NET" />
+        </StackPanel>
     </Grid>
 </Window>
