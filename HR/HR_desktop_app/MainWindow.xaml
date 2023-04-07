@@ -9,10 +9,7 @@
         Title="{Binding Title}" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
-    <Window.Resources>
-        <cm:StaticCommandCloseApp x:Key="CloseApp"/>
-    </Window.Resources>
+    </Window.DataContext>    
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="Q" Command="{StaticResource CloseApp}"/>
     </Window.InputBindings>
