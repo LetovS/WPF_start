@@ -27,7 +27,28 @@ namespace HR_desktop_app.ViewModels
 
         #region Тестовые данные со студентами и группами
 
-        public ICollection<Group> Groups;
+        private ICollection<Group> _Groups;
+        public ICollection<Group> Groups
+        {
+            get => _Groups;
+            set => Set(ref _Groups, value);
+        }
+
+
+        private Group _SelectedGroup;
+
+        public Group SelectedGroup
+        {
+            get => _SelectedGroup;
+            set => Set(ref _SelectedGroup, value);
+        }
+
+        private Student _SelectedStudent;
+        public Student SelectedStudent
+        {
+            get => _SelectedStudent;
+            set => Set(ref _SelectedStudent, value);
+        }
 
         #endregion
 

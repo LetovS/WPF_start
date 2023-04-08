@@ -25,7 +25,33 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl>
-            <TabItem Header="Stylies, Triggers, Interactive etc..."/>
+            <TabItem Header="Работа с тестовыми данными">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Группы" Grid.Column="0">
+                        <ListBox
+                             ItemsSource="{Binding Groups}"
+                             SelectedItem="{Binding SelectedGroup}"
+                             SelectedIndex="0">
+
+                        </ListBox>
+                    </GroupBox>
+
+                    <GroupBox Header="Студенты" Grid.Column="1">
+                        <DataGrid ItemsSource="{Binding SelectedGroup}"
+                                SelectedItem="{Binding SelectedGroup.Students}">
+
+                        </DataGrid>
+                    </GroupBox>
+
+                    
+
+
+                </Grid>
+            </TabItem>
             <TabItem Header="Any themes of learn"/>
         </TabControl>
     </DockPanel>
