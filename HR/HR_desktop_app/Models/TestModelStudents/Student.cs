@@ -10,9 +10,9 @@ namespace HR_desktop_app.Models.TestModelStudents
         public Group Group { get; set; }
         public string Description { get; set; } = "Test record";
 
-        public override string ToString()
-        {
-            return $"{Name} {SurName} {Group}";
-        }
+        //public override string ToString()
+        //{
+        //    return $"{Name} {SurName} {Group}";
+        //}
     }
 }

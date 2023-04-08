@@ -34,7 +34,6 @@ namespace HR_desktop_app.ViewModels
             set => Set(ref _Groups, value);
         }
 
-
         private Group _SelectedGroup;
 
         public Group SelectedGroup
@@ -49,6 +48,23 @@ namespace HR_desktop_app.ViewModels
             get => _SelectedStudent;
             set => Set(ref _SelectedStudent, value);
         }
+
+
+        private ICollection<object> _CompositeCollection;
+
+        public ICollection<object> CompositeCollection
+        {
+            get => _CompositeCollection;
+            set => Set(ref _CompositeCollection, value);
+        }
+
+        private object _SelectedElement;
+        public object SelectedElement
+        {
+            get => _SelectedElement;
+            set => Set(ref _SelectedElement, value);
+        }
+
 
         #endregion
 
@@ -69,6 +85,14 @@ namespace HR_desktop_app.ViewModels
             }
 
             Groups = new ObservableCollection<Group>(groups);
+
+            var composite = new List<object>();
+            composite.Add("Hello world");
+            composite.Add(6);
+            composite.Add(groups[0]);
+            composite.Add(GeneratorStudents.GetStudents(1, new Group { Name = "Test group"}).First());
+
+            CompositeCollection = new ObservableCollection<object>(composite);
             #endregion
 
 
