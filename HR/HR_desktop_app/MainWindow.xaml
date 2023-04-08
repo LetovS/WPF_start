@@ -40,10 +40,18 @@
                         </ListBox>
                     </GroupBox>
 
-                    <GroupBox Header="Студенты" Grid.Column="1">
-                        <DataGrid ItemsSource="{Binding SelectedGroup}"
-                                SelectedItem="{Binding SelectedGroup.Students}">
+                    <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
+                        <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
+                                SelectedItem="{Binding SelectedGroup.Students}"
+                                  AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}"/>
+                                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=dd:MM:yyyy}"/>
+                                <DataGridTextColumn Header="Группа" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
+                                <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных}" Width="*"/>
 
+                            </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
 
