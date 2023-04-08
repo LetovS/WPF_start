@@ -33,7 +33,7 @@ namespace HR_desktop_app.ViewModels
 
         public MainWindowViewModel()
         {
-
+            #region Получение тестовых данных
             var rnd = new Random();
 
             Group[] groups = new Group[rnd.Next(5, 20)];
@@ -46,8 +46,10 @@ namespace HR_desktop_app.ViewModels
                 };
                 groups[i].Students = GeneratorStudents.GetStudents(rnd.Next(10, 30), groups[i]);
             }
-  
+
             Groups = new ObservableCollection<Group>(groups);
+            #endregion
+
 
 
 
