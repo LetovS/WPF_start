@@ -9,7 +9,7 @@ namespace HR_desktop_app.ViewModels.Base
     /// </summary>
     internal abstract class ViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propname = null!)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));

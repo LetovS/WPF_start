@@ -19,8 +19,8 @@ namespace HR_desktop_app.Infrastructure.Commands
             _CanExecuted = CanExecuted;
         }
 
-        public override bool CanExecute(object? parameter) => _CanExecuted?.Invoke(parameter!) ?? true;
+        public override bool CanExecute(object parameter) => _CanExecuted?.Invoke(parameter!) ?? true;
 
-        public override void Execute(object? parameter) => _Execute(parameter!);
+        public override void Execute(object parameter) => _Execute(parameter!);
     }
 }
