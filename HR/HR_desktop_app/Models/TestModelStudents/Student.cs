@@ -9,5 +9,10 @@ namespace HR_desktop_app.Models.TestModelStudents
         public DateTime Birthday { get; set; }
         public Group Group { get; set; }
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} {SurName} {Group}";
+        }
     }
 }
