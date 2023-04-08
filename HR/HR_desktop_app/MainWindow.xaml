@@ -9,7 +9,24 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-         
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Exit"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <TextBlock Text="Empty yet -)"/>
+            </MenuItem>
+
+            <MenuItem Header="Info">
+                <MenuItem Header="About app."/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom"></StatusBar>
+        <TabControl>
+            <TabItem Header="Stylies, Triggers, Interactive etc..."/>
+            <TabItem Header="Any themes of learn"/>
+        </TabControl>
+    </DockPanel>
 </Window>
