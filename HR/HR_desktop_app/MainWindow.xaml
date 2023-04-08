@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:HR_desktop_app"
         xmlns:vm="clr-namespace:HR_desktop_app.ViewModels"
+        xmlns:std="clr-namespace:HR_desktop_app.Models.TestModelStudents"
         Title="{Binding Title}" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -43,13 +44,23 @@
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
                                 SelectedItem="{Binding SelectedGroup.Students}"
-                                  AutoGenerateColumns="False" IsReadOnly="True">
+                                  AutoGenerateColumns="False"
+                                  AlternatingRowBackground="LightBlue"
+                                  GridLinesVisibility="Vertical"
+                                  VerticalGridLinesBrush="Black" IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}"/>
-                                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=dd:MM:yyyy}"/>
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}"/>                                
+                                <!--<DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
+                                <DataGridTemplateColumn Header="Дата рождения">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="std:Student">
+                                            <DatePicker SelectedDate="{Binding Birthday}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Группа" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
-                                <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных}" Width="*"/>
+                                <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
 
                             </DataGrid.Columns>
                         </DataGrid>

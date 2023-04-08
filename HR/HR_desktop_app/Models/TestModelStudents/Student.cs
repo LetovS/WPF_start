@@ -8,7 +8,7 @@ namespace HR_desktop_app.Models.TestModelStudents
         public string SurName { get; set; }
         public DateTime Birthday { get; set; }
         public Group Group { get; set; }
-        public string Description { get; set; }
+        public string Description { get; set; } = "Test record";
 
         public override string ToString()
         {
