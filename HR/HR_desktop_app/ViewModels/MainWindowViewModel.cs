@@ -1,5 +1,8 @@
-﻿using HR_desktop_app.ViewModels.Base;
+﻿using HR_desktop_app.Infrastructure.Commands;
+using HR_desktop_app.ViewModels.Base;
 using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace HR_desktop_app.ViewModels
 {
@@ -15,5 +18,12 @@ namespace HR_desktop_app.ViewModels
             set => Set(ref _Title, value);
         }
 
+        public ICommand CloseAppCommand { get; }
+        private void OnCloseAppCommandExecuted(object o) => Application.Current.Shutdown();
+        private bool CanExecuteCloseAppCommand(object o) => true;
+        public MainWindowViewModel()
+        {
+            CloseAppCommand = new LambdaCommand(OnCloseAppCommandExecuted, CanExecuteCloseAppCommand);
+        }
     }
 }

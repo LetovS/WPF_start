@@ -4,12 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:HR_desktop_app"
+        xmlns:cm="clr-namespace:HR_desktop_app.Infrastructure.Commands"
         xmlns:vm="clr-namespace:HR_desktop_app.ViewModels"
         Title="{Binding Title}" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>    
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="Q" Command="{StaticResource CloseApp}"/>
+    </Window.InputBindings>
     <Grid>
-         
+
+        <Ellipse VerticalAlignment="Top"
+                 HorizontalAlignment="Center"
+                 Stroke="Red"
+                 StrokeThickness="155"
+                 Fill="Blue"
+                 Margin="25">
+            <Ellipse.InputBindings>
+                <MouseBinding MouseAction="LeftDoubleClick" Command="{StaticResource CloseApp}"/>
+            </Ellipse.InputBindings>
+        </Ellipse>
+
+        <Button Content="Exit class command"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="50"
+                Padding="60,30"
+                Command="{StaticResource CloseApp}"/>
+        <Button Content="Exit from VM"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="50"
+                Padding="60,30"
+                Command="{Binding CloseAppCommand}"/>
     </Grid>
 </Window>
