@@ -116,10 +116,27 @@
             </TabItem>
             <TabItem Header="Any themes of learn">
                 <Button Content="Test"
-                        Style="{StaticResource DangerousBtnStyle}"
+                        Style="{StaticResource ConfirmBrnStyle}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        />
+                        RenderTransformOrigin="0.5,0.5"
+                        >
+                    <Button.RenderTransform>
+                        <RotateTransform  Angle="0" x:Name="Rotate"/>
+                    </Button.RenderTransform>
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <DoubleAnimation Storyboard.TargetName="Rotate"
+                                                     Storyboard.TargetProperty="Angle"
+                                                     From="0" To="360" Duration="0:0:1"
+                                                     AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
             </TabItem>
         </TabControl>
     </DockPanel>
