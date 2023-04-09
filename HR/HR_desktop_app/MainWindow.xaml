@@ -31,11 +31,11 @@
             <TabItem Header="Работа с тестовыми данными">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <DockPanel Grid.Column="0">
-                        <GroupBox Header="Действия" DockPanel.Dock="Bottom">
+                    <DockPanel Grid.Column="0" HorizontalAlignment="Center">
+                        <GroupBox Header="Действия с группами" DockPanel.Dock="Bottom">
                             <UniformGrid Columns="2" Margin="0,5">
                                 <Button                                                                                
                                         Command="{Binding AddGroupCommand}"
@@ -50,25 +50,41 @@
                                         Style="{StaticResource DangerousBtnStyle}"/>
                             </UniformGrid>
                         </GroupBox>                        
-                        <GroupBox Header="Группы" DockPanel.Dock="Top" >
+                        <GroupBox Header="Группы" DockPanel.Dock="Top">
                             <ListBox
                              ItemsSource="{Binding Groups}"
                              SelectedItem="{Binding SelectedGroup}"
                              SelectedIndex="0"
-                             Margin="0,5"/>
+                             Margin="0,5">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="std:Group">
+                                        <UniformGrid Columns="2">
+                                            <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
+                                            <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
+                                                       Margin="10,0,0,0"
+                                                       HorizontalAlignment="Left"/>
+                                        </UniformGrid>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                                <Setter TargetName="Back" Property="Foreground" Value="Red"/>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </GroupBox>
                     </DockPanel>
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
                                 SelectedItem="{Binding SelectedGroup.Students}"
-                                  AutoGenerateColumns="False"
+                                  AutoGenerateColumns="False"  
                                   CanUserAddRows="False"
                                   AlternatingRowBackground="LightBlue"
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="Black">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>                                
+                                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>
                                 <!--<DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
                                 <DataGridTemplateColumn Header="Дата рождения">
                                     <DataGridTemplateColumn.CellTemplate>
