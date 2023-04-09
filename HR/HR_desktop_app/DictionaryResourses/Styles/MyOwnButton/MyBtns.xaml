@@ -3,9 +3,11 @@
                     xmlns:fa="http://schemas.fontawesome.com/icons/">
 
     <DropShadowEffect x:Key="BtnShadow" ShadowDepth="1"/>
-
+    <CornerRadius x:Key="Radius">
+       5
+    </CornerRadius>
     <ControlTemplate TargetType="{x:Type Button}" x:Key="ConfirmBtnTemplate">
-        <Border x:Name="border" CornerRadius="5"
+        <Border x:Name="border" CornerRadius="{StaticResource Radius}"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -16,7 +18,8 @@
                         Margin="{TemplateBinding Padding}">
                 <fa:ImageAwesome    Height="12"
                                     Icon="Solid_Check"
-                                    Foreground="Blue"
+                                    Foreground="Green"
+                                    x:Name="Icon"
                                     Margin="0,0,5,0"
                                     DockPanel.Dock="Left"
                                     Effect="{StaticResource BtnShadow}"/>
@@ -36,9 +39,10 @@
                 <Setter Property="FontWeight" Value="Bold"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" TargetName="border" Value="LightGreen"/>
+                <Setter Property="Background" TargetName="border" Value="Green"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="White"/>
                 <Setter Property="Foreground" Value="White"/>
+                <Setter TargetName="Icon" Property="Foreground" Value="White"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
                 <Setter Property="Background" TargetName="border" Value="DarkGreen"/>
@@ -64,7 +68,7 @@
     </Style>
 
     <ControlTemplate TargetType="{x:Type Button}" x:Key="DangerousBtnTemplate">
-        <Border x:Name="border" CornerRadius="3"
+        <Border x:Name="border" CornerRadius="{StaticResource Radius}"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -74,8 +78,9 @@
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         Margin="{TemplateBinding Padding}">
                 <fa:ImageAwesome    Height="12"
+                                    x:Name="DangerousIcon"
                                     Icon="Solid_Times"
-                                    Foreground="Red"
+                                    Foreground="WhiteSmoke"
                                     Margin="0,0,5,0"
                                     DockPanel.Dock="Left"
                                     Effect="{StaticResource BtnShadow}"/>                
@@ -88,18 +93,16 @@
             </StackPanel>
         </Border>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsDefaulted" Value="true">
-                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                <Setter Property="FontWeight" Value="Bold"/>
-            </Trigger>
             <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" TargetName="border" Value="Blue"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="White"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" TargetName="border" Value="White"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Red"/>
+                <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="TextElement.FontWeight" Value="Bold"/>
+                <Setter TargetName="DangerousIcon" Property="Foreground" Value="Red"/>
             </Trigger>
             <Trigger Property="IsPressed" Value="true">
-                <Setter Property="Background" TargetName="border" Value="DarkGreen"/>
-                <Setter Property="BorderBrush" TargetName="border" Value="Blue"/>
+                <Setter Property="Background" TargetName="border" Value="Orange"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Green"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <!--<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>-->
@@ -110,9 +113,9 @@
     </ControlTemplate>
     <Style x:Key="DangerousBtnStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="Red"/>
         <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
