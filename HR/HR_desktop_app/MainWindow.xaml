@@ -11,6 +11,11 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="BrnStyle">
+            <Setter Property="Margin" Value="3,1"/>
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -35,21 +40,16 @@
                     </Grid.ColumnDefinitions>
                     <DockPanel Grid.Column="0">
                         <GroupBox Header="Действия" DockPanel.Dock="Bottom">
-                            <UniformGrid Columns="2">
-                                <UniformGrid.Resources >
-                                    <Style TargetType="Button" x:Key="BrnStyle">
-                                        <Setter Property="Margin" Value="3,1"/>
-                                    </Style>
-                                </UniformGrid.Resources>
+                            <UniformGrid Columns="2">                                
                                 <Button Content="Add"                                                                               
                                         Command="{Binding AddGroupCommand}"
                                         Background="LightGreen"
-                                        Style="{StaticResource BrnStyle}"/>
+                                        />
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
                                         Background="Red"
-                                        Style="{StaticResource BrnStyle}"/>
+                                        />
                             </UniformGrid>
                         </GroupBox>                        
                         <GroupBox Header="Группы" DockPanel.Dock="Top" >
