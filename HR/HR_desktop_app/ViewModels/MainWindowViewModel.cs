@@ -57,7 +57,7 @@ namespace HR_desktop_app.ViewModels
         private void OnAddGroupCommandExecuted (object o)
         {
             //TODO При удалении групп и новом создании повторяются номера групп
-            var new_group = new Group() { Name = $"Группа {Groups.Count+1}", Students = new ObservableCollection<Student>() };
+            var new_group = new Group() { Name = $"Группа {Groups.Count}", Students = new ObservableCollection<Student>() };
             Groups.Add(new_group);
             SelectedGroup = new_group;
         }
