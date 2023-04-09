@@ -10,12 +10,7 @@
         Title="{Binding Title}" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
-    <Window.Resources>
-        <Style TargetType="Button" x:Key="BrnStyle">
-            <Setter Property="Margin" Value="3,1"/>
-        </Style>
-    </Window.Resources>
+    </Window.DataContext>    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -139,7 +134,9 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Any themes of learn"/>
+            <TabItem Header="Any themes of learn">
+                <Button Style="{StaticResource Warning}"/>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
