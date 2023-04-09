@@ -96,7 +96,11 @@
                                  SelectedIndex="3"
                                  Style="{Binding}">
                             <ListBox.Resources>
-                                <ResourceDictionary Source="DictionaryResourses\DataTemplates\CompositeTemplates.xaml"/>
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="DictionaryResourses\DataTemplates\CompositeTemplates.xaml"/>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
                             </ListBox.Resources>
                         </ListBox>
                     </GroupBox>
