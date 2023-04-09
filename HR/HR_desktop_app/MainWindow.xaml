@@ -38,13 +38,11 @@
                             <UniformGrid Columns="2">                                
                                 <Button Content="Add"                                                                               
                                         Command="{Binding AddGroupCommand}"
-                                        Background="LightGreen"
-                                        />
+                                        Style="{StaticResource PrimaryBtn}"/>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
-                                        Background="Red"
-                                        />
+                                        Style="{StaticResource DangerBtn}"/>
                             </UniformGrid>
                         </GroupBox>                        
                         <GroupBox Header="Группы" DockPanel.Dock="Top" >
