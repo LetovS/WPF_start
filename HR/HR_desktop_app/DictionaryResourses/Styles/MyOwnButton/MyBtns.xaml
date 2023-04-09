@@ -1,6 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.com/icons/">
+
+    <DropShadowEffect x:Key="BtnShadow" ShadowDepth="3"/>
+
     <ControlTemplate TargetType="{x:Type Button}" x:Key="ConfirmBtnTemplate">
         <Border x:Name="border" CornerRadius="5"
                                 Background="{TemplateBinding Background}"
@@ -15,11 +18,10 @@
                                     Icon="Solid_Check"
                                     Foreground="Blue"
                                     Margin="0,0,5,0"
-                                    DockPanel.Dock="Left">
-                    <fa:ImageAwesome.Effect>
-                        <DropShadowEffect ShadowDepth="3"/>
-                    </fa:ImageAwesome.Effect>
-                </fa:ImageAwesome>
+                                    DockPanel.Dock="Left"
+                                    Effect="{StaticResource BtnShadow}"/>
+
+
                 <ContentPresenter x:Name="contentPresenter"
                                     DockPanel.Dock="Right"
                                     Focusable="False"
@@ -75,11 +77,8 @@
                                     Icon="Solid_Times"
                                     Foreground="Red"
                                     Margin="0,0,5,0"
-                                    DockPanel.Dock="Left">
-                    <fa:ImageAwesome.Effect>
-                        <DropShadowEffect ShadowDepth="3"/>
-                    </fa:ImageAwesome.Effect>
-                </fa:ImageAwesome>
+                                    DockPanel.Dock="Left"
+                                    Effect="{StaticResource BtnShadow}"/>                
                 <ContentPresenter x:Name="contentPresenter"
                                     DockPanel.Dock="Right"
                                     Focusable="False"
