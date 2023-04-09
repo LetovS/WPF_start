@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:HR_desktop_app"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:vm="clr-namespace:HR_desktop_app.ViewModels"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:std="clr-namespace:HR_desktop_app.Models.TestModelStudents"
@@ -35,10 +36,24 @@
                     </Grid.ColumnDefinitions>
                     <DockPanel Grid.Column="0">
                         <GroupBox Header="Действия" DockPanel.Dock="Bottom">
-                            <UniformGrid Columns="2">                                
-                                <Button Content="Add"                                                                               
+                            <UniformGrid Columns="2">
+                                <Button                                                                                
                                         Command="{Binding AddGroupCommand}"
-                                        Style="{StaticResource PrimaryBtn}"/>
+                                        Style="{StaticResource PrimaryBtn}">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:ImageAwesome Height="12"
+                                                             Icon="Solid_Check"
+                                                             Margin="2,0"
+                                                             Foreground="Blue">
+                                                <fa:ImageAwesome.Effect>
+                                                    <DropShadowEffect ShadowDepth="1"/>
+                                                </fa:ImageAwesome.Effect>
+                                            </fa:ImageAwesome>
+                                            <TextBlock Text="Add"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
