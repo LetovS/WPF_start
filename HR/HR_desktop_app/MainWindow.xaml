@@ -125,7 +125,11 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Any themes of learn">
-                <Button Style="{StaticResource Warning}"/>
+                <Button Content="Test"
+                        Style="{StaticResource MyBtnStyle}"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Padding="60,20"/>
             </TabItem>
         </TabControl>
     </DockPanel>
