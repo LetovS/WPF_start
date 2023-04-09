@@ -46,9 +46,10 @@
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
                                 SelectedItem="{Binding SelectedGroup.Students}"
                                   AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
                                   AlternatingRowBackground="LightBlue"
                                   GridLinesVisibility="Vertical"
-                                  VerticalGridLinesBrush="Black" >
+                                  VerticalGridLinesBrush="Black">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>                                
