@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Faker;
 using HR_desktop_app.Data.GeneratorFakeStudents;
+using System.Windows.Input;
+using HR_desktop_app.Infrastructure.Commands;
 
 namespace HR_desktop_app.ViewModels
 {
@@ -26,9 +28,9 @@ namespace HR_desktop_app.ViewModels
 
 
         #region Тестовые данные со студентами и группами
-
-        private ICollection<Group> _Groups;
-        public ICollection<Group> Groups
+        #region Поля и навигационные свойства
+        private ObservableCollection<Group> _Groups;
+        public ObservableCollection<Group> Groups
         {
             get => _Groups;
             set => Set(ref _Groups, value);
@@ -48,8 +50,38 @@ namespace HR_desktop_app.ViewModels
             get => _SelectedStudent;
             set => Set(ref _SelectedStudent, value);
         }
+        #endregion
+        #region Команды
+        public ICommand AddGroupCommand { get; }
+        private bool CanAddGroupCommandExecute(object o) => true;
+        private void OnAddGroupCommandExecuted (object o)
+        {
+            //TODO При удалении групп и новом создании повторяются номера групп
+            var new_group = new Group() { Name = $"Группа {Groups.Count+1}", Students = new ObservableCollection<Student>() };
+            Groups.Add(new_group);
+            SelectedGroup = new_group;
+        }
+
+        public ICommand DeleteGroupCommand { get; }
+        private bool CanDeleteGroupCommandExecute(object o) => o is Group group && Groups.Contains(group);
+        private void OnDeleteGroupCommandExecuted(object o)
+        {
+            if (!(o is Group group)) return;
+            int index = Groups.ToList().IndexOf(group);
+            Groups.Remove(group);
+            //TODO При удалении последней группы не присваивается selectedgroup
+            if (index < Groups.Count)
+            {
+                SelectedGroup = Groups[index];
+            }
+        }
 
 
+        #endregion
+
+        #endregion
+
+        #region Коллекция разнотипных данных
         private ICollection<object> _CompositeCollection;
 
         public ICollection<object> CompositeCollection
@@ -64,9 +96,8 @@ namespace HR_desktop_app.ViewModels
             get => _SelectedElement;
             set => Set(ref _SelectedElement, value);
         }
-
-
         #endregion
+
 
         public MainWindowViewModel()
         {
@@ -95,11 +126,10 @@ namespace HR_desktop_app.ViewModels
             CompositeCollection = new ObservableCollection<object>(composite);
             #endregion
 
-
-
-
-
-
+            #region Инициализация команд
+            AddGroupCommand = new LambdaCommand(OnAddGroupCommandExecuted, CanAddGroupCommandExecute);
+            DeleteGroupCommand = new LambdaCommand(OnDeleteGroupCommandExecuted, CanDeleteGroupCommandExecute);
+            #endregion
 
         }
     }

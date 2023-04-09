@@ -33,14 +33,28 @@
                         <ColumnDefinition Width="250"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Группы" Grid.Column="0">
-                        <ListBox
+                    <DockPanel Grid.Column="0">
+                        <GroupBox Header="Действия" DockPanel.Dock="Bottom">
+                            <UniformGrid Columns="2">
+                                <Button Content="Add"                                                                               
+                                        Command="{Binding AddGroupCommand}"
+                                        Margin="3,1"/>
+                                <Button Content="Delete"   
+                                        Command="{Binding DeleteGroupCommand}"
+                                        CommandParameter="{Binding SelectedGroup}"
+                                        Margin="3,1"/>
+                            </UniformGrid>
+                        </GroupBox>                        
+                        <GroupBox Header="Группы" DockPanel.Dock="Top" >
+                            <ListBox
                              ItemsSource="{Binding Groups}"
                              SelectedItem="{Binding SelectedGroup}"
-                             SelectedIndex="0">
-
-                        </ListBox>
-                    </GroupBox>
+                             SelectedIndex="0"
+                             Margin="0,5"/>
+                        </GroupBox>
+                        
+                    </DockPanel>
+                    
 
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
