@@ -38,8 +38,7 @@
                             <ListBox
                              ItemsSource="{Binding Groups}"
                              SelectedItem="{Binding SelectedGroup}"
-                             SelectedIndex="0">
-                            </ListBox>                            
+                             SelectedIndex="0" Margin="0,5"/>
                         </GroupBox>
                         <GroupBox Header="Действия" DockPanel.Dock="Top" VerticalAlignment="Bottom">
                             <StackPanel Orientation="Horizontal" Margin="3">
