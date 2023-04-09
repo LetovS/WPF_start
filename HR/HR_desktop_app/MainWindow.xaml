@@ -10,7 +10,7 @@
         Title="{Binding Title}" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -35,14 +35,14 @@
                     </Grid.ColumnDefinitions>
                     <DockPanel Grid.Column="0">
                         <GroupBox Header="Действия" DockPanel.Dock="Bottom">
-                            <UniformGrid Columns="2">
+                            <UniformGrid Columns="2">                                
                                 <Button Content="Add"                                                                               
                                         Command="{Binding AddGroupCommand}"
-                                        Margin="3,1"/>
+                                        Style="{StaticResource PrimaryBtn}"/>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
-                                        Margin="3,1"/>
+                                        Style="{StaticResource DangerBtn}"/>
                             </UniformGrid>
                         </GroupBox>                        
                         <GroupBox Header="Группы" DockPanel.Dock="Top" >
@@ -132,7 +132,9 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Any themes of learn"/>
+            <TabItem Header="Any themes of learn">
+                <Button Style="{StaticResource Warning}"/>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
