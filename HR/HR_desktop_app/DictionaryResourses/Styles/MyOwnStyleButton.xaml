@@ -11,8 +11,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
     <ControlTemplate TargetType="{x:Type Button}" x:Key="CustomBtnTemplate">
         <Border x:Name="border" CornerRadius="10"
                                 Background="{TemplateBinding Background}"

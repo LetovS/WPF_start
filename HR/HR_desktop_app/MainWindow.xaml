@@ -115,12 +115,15 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Any themes of learn">
-                <Button Content="Test"
+                <Button Content="Test" 
                         Style="{StaticResource ConfirmBrnStyle}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         RenderTransformOrigin="0.5,0.5"
                         >
+                    <Button.Background>
+                        <SolidColorBrush Color="White" x:Name="Brush"/>
+                    </Button.Background>
                     <Button.RenderTransform>
                         <RotateTransform  Angle="0" x:Name="Rotate"/>
                     </Button.RenderTransform>
@@ -132,6 +135,24 @@
                                                      Storyboard.TargetProperty="Angle"
                                                      From="0" To="360" Duration="0:0:1"
                                                      AutoReverse="True"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="Brush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="Red" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Button.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="Brush"
+                                                    Storyboard.TargetProperty="Color"
+                                                    To="White" Duration="0:0:0.5"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
