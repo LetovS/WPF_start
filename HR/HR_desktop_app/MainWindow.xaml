@@ -27,7 +27,7 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
-        <TabControl>
+        <TabControl SelectedIndex="0">
             <TabItem Header="Работа с тестовыми данными">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -39,25 +39,13 @@
                             <UniformGrid Columns="2">
                                 <Button                                                                                
                                         Command="{Binding AddGroupCommand}"
-                                        Style="{StaticResource PrimaryBtn}">
-                                    <Button.Content>
-                                        <StackPanel Orientation="Horizontal">
-                                            <fa:ImageAwesome Height="12"
-                                                             Icon="Solid_Check"
-                                                             Margin="2,0"
-                                                             Foreground="Blue">
-                                                <fa:ImageAwesome.Effect>
-                                                    <DropShadowEffect ShadowDepth="1"/>
-                                                </fa:ImageAwesome.Effect>
-                                            </fa:ImageAwesome>
-                                            <TextBlock Text="Add"/>
-                                        </StackPanel>
-                                    </Button.Content>
+                                        Content="Add"
+                                        Style="{StaticResource ConfirmBrnStyle}">                                    
                                 </Button>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
-                                        Style="{StaticResource DangerBtn}"/>
+                                        Style="{StaticResource DangerousBtnStyle}"/>
                             </UniformGrid>
                         </GroupBox>                        
                         <GroupBox Header="Группы" DockPanel.Dock="Top" >
@@ -126,10 +114,10 @@
             </TabItem>
             <TabItem Header="Any themes of learn">
                 <Button Content="Test"
-                        Style="{StaticResource MyBtnStyle}"
+                        Style="{StaticResource DangerousBtnStyle}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        Padding="60,20"/>
+                        />
             </TabItem>
         </TabControl>
     </DockPanel>

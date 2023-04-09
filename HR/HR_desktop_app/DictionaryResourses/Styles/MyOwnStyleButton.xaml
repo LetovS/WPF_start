@@ -11,19 +11,34 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
     <ControlTemplate TargetType="{x:Type Button}" x:Key="CustomBtnTemplate">
-        <Border x:Name="border" CornerRadius="20"
+        <Border x:Name="border" CornerRadius="10"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 SnapsToDevicePixels="true">
-            <ContentPresenter x:Name="contentPresenter"
-                                              Focusable="False"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              Margin="{TemplateBinding Padding}"
-                                              RecognizesAccessKey="True"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Margin="{TemplateBinding Padding}">
+                <fa:ImageAwesome    Height="12"
+                                    Icon="Solid_Check"
+                                    Foreground="Blue"
+                                    Margin="0,0,5,0"
+                                    DockPanel.Dock="Left">
+                    <fa:ImageAwesome.Effect>
+                        <DropShadowEffect ShadowDepth="3"/>
+                    </fa:ImageAwesome.Effect>
+                </fa:ImageAwesome>
+                <ContentPresenter x:Name="contentPresenter"
+                                    DockPanel.Dock="Right"
+                                    Focusable="False"
+                                    RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+
+            </StackPanel>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="IsDefaulted" Value="true">
@@ -46,9 +61,9 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <Style x:Key="MyBtnStyle" TargetType="{x:Type Button}">
+    <Style x:Key="ConfirmBtnStyle1" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="LightGreen"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -57,5 +72,7 @@
         <Setter Property="Padding" Value="1"/>
         <Setter Property="Template" Value="{StaticResource CustomBtnTemplate}"/>
     </Style>
+
+
     
 </ResourceDictionary>
