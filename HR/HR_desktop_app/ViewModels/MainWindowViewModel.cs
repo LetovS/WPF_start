@@ -29,8 +29,8 @@ namespace HR_desktop_app.ViewModels
 
         #region Тестовые данные со студентами и группами
         #region Поля и навигационные свойства
-        private List<Group> _Groups;
-        public List<Group> Groups
+        private ObservableCollection<Group> _Groups;
+        public ObservableCollection<Group> Groups
         {
             get => _Groups;
             set => Set(ref _Groups, value);
@@ -56,17 +56,24 @@ namespace HR_desktop_app.ViewModels
         private bool CanAddGroupCommandExecute(object o) => true;
         private void OnAddGroupCommandExecuted (object o)
         {
+            //TODO При удалении групп и новом создании повторяются номера групп
             var new_group = new Group() { Name = $"Группа {Groups.Count+1}", Students = new ObservableCollection<Student>() };
             Groups.Add(new_group);
+            SelectedGroup = new_group;
         }
 
         public ICommand DeleteGroupCommand { get; }
-        private bool CanDeleteGroupCommandExecute(object o) => Groups.Count > 0 && o is Group group && Groups.Contains(group);
+        private bool CanDeleteGroupCommandExecute(object o) => o is Group group && Groups.Contains(group);
         private void OnDeleteGroupCommandExecuted(object o)
         {
             if (!(o is Group group)) return;
+            int index = Groups.ToList().IndexOf(group);
             Groups.Remove(group);
-            OnPropertyChanged(nameof(Groups));
+            //TODO При удалении последней группы не присваивается selectedgroup
+            if (index < Groups.Count)
+            {
+                SelectedGroup = Groups[index];
+            }
         }
 
 
@@ -108,7 +115,7 @@ namespace HR_desktop_app.ViewModels
                 groups[i].Students = GeneratorStudents.GetStudents(rnd.Next(10, 30), groups[i]);
             }
 
-            Groups = new List<Group>(groups);
+            Groups = new ObservableCollection<Group>(groups);
 
             var composite = new List<object>();
             composite.Add("Hello world");

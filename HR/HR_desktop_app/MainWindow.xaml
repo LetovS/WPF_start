@@ -34,18 +34,25 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <DockPanel Grid.Column="0">
+                        <GroupBox Header="Действия" DockPanel.Dock="Bottom">
+                            <UniformGrid Columns="2">
+                                <Button Content="Add"                                                                               
+                                        Command="{Binding AddGroupCommand}"
+                                        Margin="3,1"/>
+                                <Button Content="Delete"   
+                                        Command="{Binding DeleteGroupCommand}"
+                                        CommandParameter="{Binding SelectedGroup}"
+                                        Margin="3,1"/>
+                            </UniformGrid>
+                        </GroupBox>                        
                         <GroupBox Header="Группы" DockPanel.Dock="Top" >
                             <ListBox
                              ItemsSource="{Binding Groups}"
                              SelectedItem="{Binding SelectedGroup}"
-                             SelectedIndex="0" Margin="0,5"/>
+                             SelectedIndex="0"
+                             Margin="0,5"/>
                         </GroupBox>
-                        <GroupBox Header="Действия" DockPanel.Dock="Top" VerticalAlignment="Bottom">
-                            <StackPanel Orientation="Horizontal" Margin="3">
-                                <Button Content="Add" HorizontalAlignment="Left" Padding="35,5" Margin="8,0"/>
-                                <Button Content="Delete" HorizontalAlignment="Right" Padding="35,5" Margin="8,0"/>
-                            </StackPanel>
-                        </GroupBox>
+                        
                     </DockPanel>
                     
 
