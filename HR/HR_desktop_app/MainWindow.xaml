@@ -36,15 +36,17 @@
                     </Grid.ColumnDefinitions>
                     <DockPanel Grid.Column="0">
                         <GroupBox Header="Действия" DockPanel.Dock="Bottom">
-                            <UniformGrid Columns="2">
+                            <UniformGrid Columns="2" Margin="0,5">
                                 <Button                                                                                
                                         Command="{Binding AddGroupCommand}"
                                         Content="Add"
+                                        Margin="5,0"
                                         Style="{StaticResource ConfirmBrnStyle}">                                    
                                 </Button>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
+                                        Margin="5,0"
                                         Style="{StaticResource DangerousBtnStyle}"/>
                             </UniformGrid>
                         </GroupBox>                        
