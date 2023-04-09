@@ -52,10 +52,7 @@
                              SelectedIndex="0"
                              Margin="0,5"/>
                         </GroupBox>
-                        
                     </DockPanel>
-                    
-
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
                                 SelectedItem="{Binding SelectedGroup.Students}"
@@ -82,50 +79,26 @@
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Группа" IsReadOnly="True" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
                                 <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
-
-                    
-
-
                 </Grid>
             </TabItem>
             <TabItem Header="Коллекция смешенного типа">
                 <Grid>
-                    <Grid.Resources>
-                        <DataTemplate DataType="{x:Type std:Student}">
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <TextBlock Text="{Binding Name}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type std:Group}">
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <TextBlock Text="{Binding Name}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type sys:String}">
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <TextBlock>
-                                    <Run Foreground="Red" FontWeight="Bold">Строка:</Run> <TextBlock Text="{Binding}"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type sys:Int32}">
-                            <TextBlock>
-                                Чисо <TextBlock Text="{Binding}"/>
-                            </TextBlock>
-                        </DataTemplate>
-                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Grid.Column="0" Header="Группа элементов">                        
+                    <GroupBox Grid.Column="0" Header="Группа элементов">
                         <ListBox ItemsSource="{Binding CompositeCollection}"
                                  SelectedItem="{Binding SelectedElement}"
-                                 SelectedIndex="3"/>
+                                 SelectedIndex="3"
+                                 Style="{Binding}">
+                            <ListBox.Resources>
+                                <ResourceDictionary Source="DictionaryResourses\DataTemplates\CompositeTemplates.xaml"/>
+                            </ListBox.Resources>
+                        </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Элемент">
                         <ContentControl Content="{Binding SelectedElement}"/>
