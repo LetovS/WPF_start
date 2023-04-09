@@ -36,13 +36,20 @@
                     <DockPanel Grid.Column="0">
                         <GroupBox Header="Действия" DockPanel.Dock="Bottom">
                             <UniformGrid Columns="2">
+                                <UniformGrid.Resources >
+                                    <Style TargetType="Button" x:Key="BrnStyle">
+                                        <Setter Property="Margin" Value="3,1"/>
+                                    </Style>
+                                </UniformGrid.Resources>
                                 <Button Content="Add"                                                                               
                                         Command="{Binding AddGroupCommand}"
-                                        Margin="3,1"/>
+                                        Background="LightGreen"
+                                        Style="{StaticResource BrnStyle}"/>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
-                                        Margin="3,1"/>
+                                        Background="Red"
+                                        Style="{StaticResource BrnStyle}"/>
                             </UniformGrid>
                         </GroupBox>                        
                         <GroupBox Header="Группы" DockPanel.Dock="Top" >
