@@ -1,4 +1,5 @@
-﻿using HR_desktop_app.ViewModels.Base;
+﻿using HR_desktop_app.Infrastructure.Commands;
+using HR_desktop_app.ViewModels.Base;
 using System;
 using System.Windows;
 using HR_desktop_app.Models.TestModelStudents;
@@ -111,7 +112,9 @@ namespace HR_desktop_app.ViewModels
                 SelectedGroup = Groups[index];
             }
         }
-
+        public ICommand CloseAppCommand { get; }
+        private void OnCloseAppCommandExecuted(object o) => Application.Current.Shutdown();
+        private bool CanExecuteCloseAppCommand(object o) => true;
 
         #endregion
 
@@ -174,20 +177,14 @@ namespace HR_desktop_app.ViewModels
             composite.Add(6);
             composite.Add(groups[0]);
             composite.Add(GeneratorStudents.GetStudents(1, new Group { Name = "Test group"}).First());
-
-
-
-
             CompositeCollection = new ObservableCollection<object>(composite);
             #endregion
 
             #region Инициализация команд
             AddGroupCommand = new LambdaCommand(OnAddGroupCommandExecuted, CanAddGroupCommandExecute);
             DeleteGroupCommand = new LambdaCommand(OnDeleteGroupCommandExecuted, CanDeleteGroupCommandExecute);
+            CloseAppCommand = new LambdaCommand(OnCloseAppCommandExecuted, CanExecuteCloseAppCommand);
             #endregion
-
         }
-
-        
     }
 }
