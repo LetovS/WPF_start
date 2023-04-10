@@ -10,6 +10,8 @@ using System.Windows.Input;
 using HR_desktop_app.Infrastructure.Commands;
 using System.Windows.Data;
 using System.ComponentModel;
+using HR_desktop_app.ViewModels.TreeDerictoriesViewModels;
+using System.IO;
 
 namespace HR_desktop_app.ViewModels
 {
@@ -26,8 +28,6 @@ namespace HR_desktop_app.ViewModels
             set => Set(ref _Title, value);
         }
         #endregion
-
-
         #region Тестовые данные со студентами и группами
         #region Поля и навигационные свойства
         private ObservableCollection<Group> _Groups;
@@ -133,6 +133,19 @@ namespace HR_desktop_app.ViewModels
             set => Set(ref _SelectedElement, value);
         }
         #endregion
+
+        #region Работа с каталогом папок
+        public DirectoryViewModel DiskRoot { get; } = new DirectoryViewModel("c:\\");
+
+        private DirectoryViewModel _SelectedDirectory;
+        public DirectoryViewModel SelectedDirectory
+        {
+            get => _SelectedDirectory;
+            set => Set(ref _SelectedDirectory, value);
+        }
+
+        #endregion
+
 
 
         public MainWindowViewModel()

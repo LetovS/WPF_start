@@ -28,7 +28,7 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
-        <TabControl SelectedIndex="0">
+        <TabControl SelectedIndex="3">
             <TabItem Header="Работа с тестовыми данными">
                 <DockPanel >                   
                     <Grid>
@@ -231,6 +231,32 @@
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>
+            </TabItem>
+            <TabItem Header="Файловая система">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Директории">
+                        <ListBox ItemsSource="{Binding DiskRoot.DirectoryItems}"
+                                 SelectedItem="{Binding SelectedDirectory}"
+                                 SelectedIndex="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="vm:DirectoryViewModel">
+                                    <TextBlock Text="{Binding Name}" ToolTip="{Binding CreationTime}"/>
+                                </DataTemplate>
+
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Файлы">
+                        <ListBox ItemsSource="{Binding SelectedDirectory.Filies, Mode=OneWay}"
+                                 >
+                            
+                        </ListBox>
+                    </GroupBox>
+                </Grid>
             </TabItem>
         </TabControl>
     </DockPanel>
