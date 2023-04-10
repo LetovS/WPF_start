@@ -52,18 +52,19 @@
                         </GroupBox>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                             
-                            <GroupBox>
+                            <GroupBox Width="230">
                                 <GroupBox.Header>
                                     <TextBlock Text="Группы:" FontWeight="Bold"/>
                                 </GroupBox.Header>
                                 <DockPanel Margin="0,5">
-                                    <DockPanel DockPanel.Dock="Top">
+                                    <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
                                         <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
                                         <TextBlock Grid.Column="0"
                                                    Text="Поиск:"
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
                                         <TextBox Grid.Column="1"
+                                                 x:Name="field"
                                                  Margin="0,0,5,0"
                                                  FontStyle="Italic"
                                                  FontWeight="Light"
@@ -75,7 +76,7 @@
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
-                                         Margin="0,5">
+                                         Margin="0,0,5,0">
                                         
                                         <ListBox.ItemTemplate>
                                             <DataTemplate DataType="std:Group">
@@ -99,33 +100,47 @@
                         
                     </DockPanel>
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
-                        <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
-                                SelectedItem="{Binding SelectedGroup.Students}"
-                                  AutoGenerateColumns="False"  
-                                  CanUserAddRows="False"
-                                  AlternatingRowBackground="LightBlue"
-                                  GridLinesVisibility="Vertical"
-                                  VerticalGridLinesBrush="Black">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>
-                                <!--<DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
-                                <DataGridTemplateColumn Header="Дата рождения">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate DataType="std:Student">
-                                            <TextBlock Text="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                    <DataGridTemplateColumn.CellEditingTemplate>
-                                        <DataTemplate DataType="std:Student">
-                                            <DatePicker SelectedDate="{Binding Birthday}"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellEditingTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Header="Группа" IsReadOnly="True" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
-                                <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <DockPanel>
+                            <DockPanel DockPanel.Dock="Top" Margin="0,4">
+                                <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
+                                <TextBlock Grid.Column="0"
+                                                   Text="Поиск студента:"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,5,0" />
+                                <TextBox Grid.Column="1"
+                                                 Margin="0,0,5,0"
+                                                 FontStyle="Italic"
+                                                 FontWeight="Light"
+                                                 TextAlignment="Center"/>
+                            </DockPanel>
+                            <DataGrid ItemsSource="{Binding SelectedGroup.Students}" DockPanel.Dock="Bottom"
+                                    SelectedItem="{Binding SelectedGroup.Students}"                                  
+                                      AutoGenerateColumns="False"  
+                                    CanUserAddRows="False"
+                                    AlternatingRowBackground="LightBlue"
+                                    GridLinesVisibility="Vertical"
+                                    VerticalGridLinesBrush="Black">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
+                                    <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>
+                                    <!--<DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
+                                    <DataGridTemplateColumn Header="Дата рождения">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate DataType="std:Student">
+                                                <TextBlock Text="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                        <DataGridTemplateColumn.CellEditingTemplate>
+                                            <DataTemplate DataType="std:Student">
+                                                <DatePicker SelectedDate="{Binding Birthday}"/>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellEditingTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Группа" IsReadOnly="True" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
+                                    <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DockPanel>
                     </GroupBox>
                 </Grid>
             </TabItem>
