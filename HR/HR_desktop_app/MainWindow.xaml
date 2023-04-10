@@ -31,74 +31,71 @@
             <TabItem Header="Работа с тестовыми данными">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="240"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <DockPanel Grid.Column="0">
-                        <GroupBox Header="Действия с группами" DockPanel.Dock="Bottom">
-                            <UniformGrid Columns="2" Margin="0,5">
-                                <Button                                                                                
-                                        Command="{Binding AddGroupCommand}"
-                                        Content="Add"
-                                        Margin="5,0"
-                                        Style="{StaticResource ConfirmBrnStyle}">
-                                </Button>
-                                <Button Content="Delete"   
-                                        Command="{Binding DeleteGroupCommand}"
-                                        CommandParameter="{Binding SelectedGroup}"
-                                        Margin="5,0"
-                                        Style="{StaticResource DangerousBtnStyle}"/>
-                            </UniformGrid>
-                        </GroupBox>
-                        <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                            
-                            <GroupBox Width="230">
-                                <GroupBox.Header>
-                                    <TextBlock Text="Группы:" FontWeight="Bold"/>
-                                </GroupBox.Header>
-                                <DockPanel Margin="0,5">
-                                    <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
-                                        <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
-                                        <TextBlock Grid.Column="0"
+
+                    <GroupBox Grid.Column="0" Header="Группы">
+                        <DockPanel>
+                            <DockPanel.Resources>
+                                
+                            </DockPanel.Resources>
+                            <DockPanel Margin="0,5">
+                                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+                                    <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
+                                    <TextBlock Grid.Column="0"
                                                    Text="Поиск:"
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
-                                        <TextBox Grid.Column="1"
+                                    <TextBox Grid.Column="1"
                                                  x:Name="field"
                                                  Margin="0,0,5,0"
                                                  FontStyle="Italic"
                                                  FontWeight="Light"
                                                  TextAlignment="Center"/>
-                                    </DockPanel>
-                                    <ListBox
+                                </DockPanel>
+                                <GroupBox Header="Действия с группами" DockPanel.Dock="Bottom">
+                                    <UniformGrid Columns="2" Margin="0,5">
+                                        <Button                                                                                
+                                        Command="{Binding AddGroupCommand}"
+                                        Content="Add"
+                                        Margin="5,0"
+                                        Style="{StaticResource ConfirmBrnStyle}">
+                                        </Button>
+                                        <Button Content="Delete"   
+                                        Command="{Binding DeleteGroupCommand}"
+                                        CommandParameter="{Binding SelectedGroup}"
+                                        Margin="5,0"
+                                        Style="{StaticResource DangerousBtnStyle}"/>
+                                    </UniformGrid>
+                                </GroupBox>
+                                <ListBox
                                         DockPanel.Dock="Bottom"
                                          ItemsSource="{Binding Groups}"
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
                                          Margin="0,0,5,0">
-                                        
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate DataType="std:Group">
-                                                <UniformGrid Columns="2">
-                                                    <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
-                                                    <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
+
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="std:Group">
+                                            <UniformGrid Columns="2">
+                                                <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
+                                                <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
                                                        Margin="10,0,0,0"
                                                        HorizontalAlignment="Left"/>
-                                                </UniformGrid>
-                                                <DataTemplate.Triggers>
-                                                    <DataTrigger Binding="{Binding Students.Count}" Value="0">
-                                                        <Setter TargetName="Back" Property="Foreground" Value="Red"/>
-                                                    </DataTrigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </DockPanel>
-                            </GroupBox>
-                        </StackPanel>
-                        
-                    </DockPanel>
+                                            </UniformGrid>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                                    <Setter TargetName="Back" Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DockPanel>                            
+                        </DockPanel>
+                    </GroupBox>
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
                         <DockPanel>
                             <DockPanel DockPanel.Dock="Top" Margin="0,4">
