@@ -8,6 +8,7 @@
         xmlns:vm="clr-namespace:HR_desktop_app.ViewModels"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:std="clr-namespace:HR_desktop_app.Models.TestModelStudents"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         Title="{Binding Title}" Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -29,10 +30,7 @@
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl SelectedIndex="0">
             <TabItem Header="Работа с тестовыми данными">
-                <DockPanel >
-                    <StatusBar DockPanel.Dock="Bottom" Height="25">
-                        <TextBlock Text="{Binding TotalTime}" Width="90"/>
-                    </StatusBar>
+                <DockPanel >                   
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="240"/>
@@ -42,10 +40,14 @@
                             <DockPanel>
                                 <DockPanel.Resources>
                                     <CollectionViewSource 
-                                    x:Key="GroupsCollection"
-                                    x:Name="GroupsCollection"
-                                    Source="{Binding Groups}"
-                                    Filter="GroupsCollectionFilter"/>
+                                        x:Key="GroupsCollection"
+                                        x:Name="GroupsCollection"
+                                        Source="{Binding Groups}"
+                                        Filter="GroupsCollectionFilter">
+                                        <CollectionViewSource.SortDescriptions>
+                                            <cm:SortDescription PropertyName="Name" Direction="Descending"/>
+                                        </CollectionViewSource.SortDescriptions>
+                                    </CollectionViewSource>
                                 </DockPanel.Resources>
                                 <DockPanel Margin="0,5">
                                     <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
@@ -82,7 +84,7 @@
                                          ItemsSource="{Binding Source={StaticResource GroupsCollection}}"
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
-                                         MaxHeight="270"                                        
+                                                                                 
                                          Margin="0,0,5,0"
                                         VirtualizingPanel.CacheLength="15"
                                         VirtualizingPanel.IsVirtualizing="True"
@@ -121,14 +123,18 @@
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
                                     <TextBox Grid.Column="1"
+                                                Text="{Binding Path=StudentFilterText, UpdateSourceTrigger=PropertyChanged}"
                                                  Margin="0,0,5,0"
                                                  FontStyle="Italic"
                                                  FontWeight="Light"
-                                                 TextAlignment="Center"/>
+                                                 TextAlignment="Center"
+                                             />
                                 </DockPanel>
-                                <DataGrid ItemsSource="{Binding SelectedGroup.Students}" DockPanel.Dock="Bottom"
-                                    SelectedItem="{Binding SelectedGroup.Students}"                                  
-                                      AutoGenerateColumns="False"  
+                                <DataGrid ItemsSource="{Binding SelectedGroupStudents}"
+                                          DockPanel.Dock="Bottom"
+                                        SelectedItem="{Binding SelectedStudent}"                                  
+                                      AutoGenerateColumns="False"
+                                          
                                     CanUserAddRows="False"
                                     AlternatingRowBackground="LightBlue"
                                     GridLinesVisibility="Vertical"
@@ -156,9 +162,7 @@
                             </DockPanel>
                         </GroupBox>
                     </Grid>
-                </DockPanel>
-                
-                
+                </DockPanel>                
             </TabItem>
             <TabItem Header="Коллекция смешенного типа">
                 <Grid>
