@@ -31,17 +31,17 @@
             <TabItem Header="Работа с тестовыми данными">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="220"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <DockPanel Grid.Column="0" HorizontalAlignment="Center">
+                    <DockPanel Grid.Column="0">
                         <GroupBox Header="Действия с группами" DockPanel.Dock="Bottom">
                             <UniformGrid Columns="2" Margin="0,5">
                                 <Button                                                                                
                                         Command="{Binding AddGroupCommand}"
                                         Content="Add"
                                         Margin="5,0"
-                                        Style="{StaticResource ConfirmBrnStyle}">                                    
+                                        Style="{StaticResource ConfirmBrnStyle}">
                                 </Button>
                                 <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
@@ -49,30 +49,54 @@
                                         Margin="5,0"
                                         Style="{StaticResource DangerousBtnStyle}"/>
                             </UniformGrid>
-                        </GroupBox>                        
-                        <GroupBox Header="Группы" DockPanel.Dock="Top">
-                            <ListBox
-                             ItemsSource="{Binding Groups}"
-                             SelectedItem="{Binding SelectedGroup}"
-                             SelectedIndex="0"
-                             Margin="0,5">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="std:Group">
-                                        <UniformGrid Columns="2">
-                                            <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
-                                            <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
+                        </GroupBox>
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                            
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    <TextBlock Text="Группы:" FontWeight="Bold"/>
+                                </GroupBox.Header>
+                                <DockPanel Margin="0,5">
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
+                                        <TextBlock Grid.Column="0"
+                                                   Text="Поиск:"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,5,0" />
+                                        <TextBox Grid.Column="1"
+                                                 Margin="0,0,5,0"
+                                                 FontStyle="Italic"
+                                                 FontWeight="Light"
+                                                 TextAlignment="Center"/>
+                                    </DockPanel>
+                                    <ListBox
+                                        DockPanel.Dock="Bottom"
+                                         ItemsSource="{Binding Groups}"
+                                         SelectedItem="{Binding SelectedGroup}"
+                                         SelectedIndex="0"
+                                         MaxHeight="270"                                        
+                                         Margin="0,5">
+                                        
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate DataType="std:Group">
+                                                <UniformGrid Columns="2">
+                                                    <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
                                                        Margin="10,0,0,0"
                                                        HorizontalAlignment="Left"/>
-                                        </UniformGrid>
-                                        <DataTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding Students.Count}" Value="0">
-                                                <Setter TargetName="Back" Property="Foreground" Value="Red"/>
-                                            </DataTrigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </GroupBox>
+                                                </UniformGrid>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                                        <Setter TargetName="Back" Property="Foreground" Value="Red"/>
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </DockPanel>
+                            </GroupBox>
+                        </StackPanel>
+                        
                     </DockPanel>
                     <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
