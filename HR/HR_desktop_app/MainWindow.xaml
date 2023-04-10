@@ -84,10 +84,10 @@
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
                                          Margin="0,0,5,0"
-                                    VirtualizingPanel.CacheLength="12"
-                                    VirtualizingPanel.IsContainerVirtualizable="True"
-                                    VirtualizingPanel.IsVirtualizing="True"
-                                    VirtualizingPanel.VirtualizationMode="Recycling">
+                                        VirtualizingPanel.CacheLength="15"
+                                        VirtualizingPanel.IsVirtualizing="True"
+                                        VirtualizingPanel.IsContainerVirtualizable="True"
+                                        VirtualizingPanel.VirtualizationMode="Recycling">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <VirtualizingStackPanel />
@@ -186,7 +186,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Any themes of learn">
-                <!--<Button Content="Test" 
+                <Button Content="Test" 
                         Style="{StaticResource ConfirmBrnStyle}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -228,8 +228,7 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
-                </Button>-->
-                <TextBlock Text="{Binding Source={x:Static l:App.IsDeveloping}}"/>
+                </Button>
             </TabItem>
         </TabControl>
     </DockPanel>

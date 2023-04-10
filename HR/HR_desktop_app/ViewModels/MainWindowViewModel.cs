@@ -59,6 +59,7 @@ namespace HR_desktop_app.ViewModels
             set => Set(ref _TotalTime, value);
         }
 
+
         #endregion
         #region Команды
         public ICommand AddGroupCommand { get; }
@@ -110,14 +111,10 @@ namespace HR_desktop_app.ViewModels
 
         public MainWindowViewModel()
         {
-            Stopwatch sw;
-
-
             #region Получение тестовых данных
             var rnd = new Random();
-            sw = Stopwatch.StartNew();
-            int count = App.IsDeveloping ? 20 : 10000;
-            Group[] groups = new Group[rnd.Next(10, count)];
+            var count = App.IsDeveloping ? 10 : 100000;
+            Group[] groups = new Group[rnd.Next(count)];
 
             for (int i = 0; i < groups.Length; i++)
             {
@@ -127,15 +124,21 @@ namespace HR_desktop_app.ViewModels
                 };
                 groups[i].Students = GeneratorStudents.GetStudents(rnd.Next(10, 30), groups[i]);
             }
-            sw.Stop();
-            TotalTime = sw.Elapsed.TotalSeconds;
+            
             Groups = new ObservableCollection<Group>(groups);
+
+            
+
+            
 
             var composite = new List<object>();
             composite.Add("Hello world");
             composite.Add(6);
             composite.Add(groups[0]);
             composite.Add(GeneratorStudents.GetStudents(1, new Group { Name = "Test group"}).First());
+
+
+
 
             CompositeCollection = new ObservableCollection<object>(composite);
             #endregion
