@@ -10,8 +10,8 @@ namespace HR_desktop_app.Infrastructure.Commands
 {
     internal class StaticCommandCloseApp : Command
     {
-        public override bool CanExecute(object? parameter) => true;
+        public override bool CanExecute(object parameter) => true;
 
-        public override void Execute(object? parameter) => Application.Current.Shutdown();
+        public override void Execute(object parameter) => Application.Current.Shutdown();
     }
 }

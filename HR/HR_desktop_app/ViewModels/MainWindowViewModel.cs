@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using HR_desktop_app.Data.GeneratorFakeStudents;
 using System.Windows.Input;
-using HR_desktop_app.Infrastructure.Commands;
 using System.Windows.Data;
 using System.ComponentModel;
 using HR_desktop_app.ViewModels.TreeDerictoriesViewModels;
