@@ -29,7 +29,7 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
-        <TabControl SelectedIndex="3">
+        <TabControl SelectedIndex="0">
             <TabItem Header="Работа с тестовыми данными">
                 <DockPanel >                   
                     <Grid>
