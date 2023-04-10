@@ -38,7 +38,9 @@
                     <GroupBox Grid.Column="0" Header="Группы">
                         <DockPanel>
                             <DockPanel.Resources>
-                                
+                                <CollectionViewSource x:Key="groupsCollection" Source="{Binding Groups}">
+                                    
+                                </CollectionViewSource>
                             </DockPanel.Resources>
                             <DockPanel Margin="0,5">
                                 <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
@@ -71,12 +73,11 @@
                                 </GroupBox>
                                 <ListBox
                                         DockPanel.Dock="Bottom"
-                                         ItemsSource="{Binding Groups}"
+                                         ItemsSource="{Binding Source={StaticResource groupsCollection}}"
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
                                          Margin="0,0,5,0">
-
                                     <ListBox.ItemTemplate>
                                         <DataTemplate DataType="std:Group">
                                             <UniformGrid Columns="2">
