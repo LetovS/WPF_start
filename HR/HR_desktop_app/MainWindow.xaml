@@ -38,9 +38,11 @@
                     <GroupBox Grid.Column="0" Header="Группы">
                         <DockPanel>
                             <DockPanel.Resources>
-                                <CollectionViewSource x:Key="groupsCollection" Source="{Binding Groups}">
-                                    
-                                </CollectionViewSource>
+                                <CollectionViewSource 
+                                    x:Key="GroupsCollection"
+                                    x:Name="GroupsCollection"
+                                    Source="{Binding Groups}"
+                                    Filter="GroupsCollectionFilter"/>
                             </DockPanel.Resources>
                             <DockPanel Margin="0,5">
                                 <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
@@ -50,8 +52,9 @@
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
                                     <TextBox Grid.Column="1"
-                                                 x:Name="field"
+                                                 x:Name="GroupNameFilterText"
                                                  Margin="0,0,5,0"
+                                                TextChanged="OnGroupsTextChanged"
                                                  FontStyle="Italic"
                                                  FontWeight="Light"
                                                  TextAlignment="Center"/>
@@ -73,7 +76,7 @@
                                 </GroupBox>
                                 <ListBox
                                         DockPanel.Dock="Bottom"
-                                         ItemsSource="{Binding Source={StaticResource groupsCollection}}"
+                                         ItemsSource="{Binding Source={StaticResource GroupsCollection}}"
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
