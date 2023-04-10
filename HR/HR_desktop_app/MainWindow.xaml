@@ -6,6 +6,7 @@
         xmlns:l="clr-namespace:HR_desktop_app"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:vm="clr-namespace:HR_desktop_app.ViewModels"
+        xmlns:fl="clr-namespace:HR_desktop_app.ViewModels.TreeDerictoriesViewModels"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:std="clr-namespace:HR_desktop_app.Models.TestModelStudents"
         xmlns:cm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
@@ -28,7 +29,7 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
-        <TabControl SelectedIndex="0">
+        <TabControl SelectedIndex="3">
             <TabItem Header="Работа с тестовыми данными">
                 <DockPanel >                   
                     <Grid>
@@ -231,6 +232,47 @@
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>
+            </TabItem>
+            <TabItem Header="Файловая система">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="0" Header="Директории">
+                        <GroupBox.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type fl:DirectoryViewModel}" ItemsSource="{Binding DirectoryItems}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Height="12" Icon="Regular_Folder" Foreground="Blue"/>
+                                    <TextBlock Text="{Binding Name}" Margin="5,0"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type fl:FileViewModel}" ItemsSource="{Binding DirectoryItems}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fa:ImageAwesome Height="12" Icon="Solid_File" Foreground="Green"/>
+                                    <TextBlock Text="{Binding Name}" Margin="5,0"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </GroupBox.Resources>
+                        <!--<ListBox ItemsSource="{Binding DiskRoot.DirectoryItems}"
+                                 SelectedItem="{Binding SelectedDirectory}"
+                                 SelectedIndex="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="vm:DirectoryViewModel">
+                                    <TextBlock Text="{Binding Name}" ToolTip="{Binding CreationTime}"/>
+                                </DataTemplate>
+
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
+                        <TreeView ItemsSource="{Binding DiskRoot.DirectoryItems}"/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Файлы">
+                        <ListBox ItemsSource="{Binding SelectedDirectory.Filies, Mode=OneWay}"
+                                 >
+                            
+                        </ListBox>
+                    </GroupBox>
+                </Grid>
             </TabItem>
         </TabControl>
     </DockPanel>
