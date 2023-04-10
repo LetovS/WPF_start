@@ -8,7 +8,6 @@ using System.Linq;
 using HR_desktop_app.Data.GeneratorFakeStudents;
 using System.Windows.Input;
 using HR_desktop_app.Infrastructure.Commands;
-using OxyPlot;
 using System.Windows.Data;
 using System.ComponentModel;
 
@@ -27,7 +26,6 @@ namespace HR_desktop_app.ViewModels
             set => Set(ref _Title, value);
         }
         #endregion
-
 
 
         #region Тестовые данные со студентами и группами
