@@ -1,13 +1,15 @@
 ﻿using HR_desktop_app.ViewModels.Base;
 using System;
+using System.Windows;
 using HR_desktop_app.Models.TestModelStudents;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Faker;
 using HR_desktop_app.Data.GeneratorFakeStudents;
 using System.Windows.Input;
 using HR_desktop_app.Infrastructure.Commands;
+using System.Windows.Data;
+using System.ComponentModel;
 
 namespace HR_desktop_app.ViewModels
 {
@@ -26,7 +28,6 @@ namespace HR_desktop_app.ViewModels
         #endregion
 
 
-
         #region Тестовые данные со студентами и группами
         #region Поля и навигационные свойства
         private ObservableCollection<Group> _Groups;
@@ -41,7 +42,12 @@ namespace HR_desktop_app.ViewModels
         public Group SelectedGroup
         {
             get => _SelectedGroup;
-            set => Set(ref _SelectedGroup, value);
+            set
+            {
+                if (!Set(ref _SelectedGroup, value)) return;
+                _SelectedGroupStudents.Source = value?.Students;
+                OnPropertyChanged(nameof(SelectedGroupStudents));
+            }
         }
 
         private Student _SelectedStudent;
@@ -50,6 +56,36 @@ namespace HR_desktop_app.ViewModels
             get => _SelectedStudent;
             set => Set(ref _SelectedStudent, value);
         }
+        private readonly CollectionViewSource _SelectedGroupStudents = new CollectionViewSource();
+        public ICollectionView SelectedGroupStudents => _SelectedGroupStudents?.View;
+
+        private void OnStudentFiltered(object sender, FilterEventArgs e)
+        {
+            var filter_text = _StudentFilterText;
+            if (string.IsNullOrWhiteSpace(filter_text)) return;
+            if (!(e.Item is Student student)) return;
+            if (student.Name is null || student.SurName is null)
+            {
+                e.Accepted = false;
+                return;
+            }
+            if (student.Name.Contains(filter_text, StringComparison.OrdinalIgnoreCase)) return;
+            if (student.SurName.Contains(filter_text, StringComparison.OrdinalIgnoreCase)) return;
+
+            e.Accepted = false;
+        }
+
+        private string _StudentFilterText;
+        public string StudentFilterText
+        {
+            get => _StudentFilterText;
+            set
+            {
+                if (!Set(ref _StudentFilterText, value)) return;
+                _SelectedGroupStudents.View.Refresh();
+            }
+        }
+
         #endregion
         #region Команды
         public ICommand AddGroupCommand { get; }
@@ -103,8 +139,8 @@ namespace HR_desktop_app.ViewModels
         {
             #region Получение тестовых данных
             var rnd = new Random();
-
-            Group[] groups = new Group[rnd.Next(5, 20)];
+            var count = App.IsDeveloping ? 10 : 100;
+            Group[] groups = new Group[rnd.Next(count)];
 
             for (int i = 0; i < groups.Length; i++)
             {
@@ -114,14 +150,20 @@ namespace HR_desktop_app.ViewModels
                 };
                 groups[i].Students = GeneratorStudents.GetStudents(rnd.Next(10, 30), groups[i]);
             }
-
+            
             Groups = new ObservableCollection<Group>(groups);
 
+            _SelectedGroupStudents.Filter += OnStudentFiltered;
+            //_SelectedGroupStudents.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Descending));
+            _SelectedGroupStudents.GroupDescriptions.Add(new PropertyGroupDescription("Name"));
             var composite = new List<object>();
             composite.Add("Hello world");
             composite.Add(6);
             composite.Add(groups[0]);
             composite.Add(GeneratorStudents.GetStudents(1, new Group { Name = "Test group"}).First());
+
+
+
 
             CompositeCollection = new ObservableCollection<object>(composite);
             #endregion
@@ -132,5 +174,7 @@ namespace HR_desktop_app.ViewModels
             #endregion
 
         }
+
+        
     }
 }
