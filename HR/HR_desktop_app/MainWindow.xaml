@@ -48,7 +48,7 @@
                                 <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
                                     <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
                                     <TextBlock Grid.Column="0"
-                                                   Text="Поиск:"
+                                                   Text="Поиск по группам:"
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
                                     <TextBox Grid.Column="1"
@@ -80,7 +80,15 @@
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
-                                         Margin="0,0,5,0">
+                                         Margin="0,0,5,0"
+                                    VirtualizingPanel.IsContainerVirtualizable="True"
+                                    VirtualizingPanel.IsVirtualizing="True"
+                                    VirtualizingPanel.VirtualizationMode="Recycling">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
                                     <ListBox.ItemTemplate>
                                         <DataTemplate DataType="std:Group">
                                             <UniformGrid Columns="2">
@@ -105,7 +113,7 @@
                             <DockPanel DockPanel.Dock="Top" Margin="0,4">
                                 <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
                                 <TextBlock Grid.Column="0"
-                                                   Text="Поиск студента:"
+                                                   Text="Поиск студентов:"
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
                                 <TextBox Grid.Column="1"
