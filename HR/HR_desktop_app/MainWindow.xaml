@@ -83,8 +83,7 @@
                                         DockPanel.Dock="Bottom"
                                          ItemsSource="{Binding Source={StaticResource GroupsCollection}}"
                                          SelectedItem="{Binding SelectedGroup}"
-                                         SelectedIndex="0"
-                                                                                 
+                                         SelectedIndex="0"                                                                                 
                                          Margin="0,0,5,0"
                                         VirtualizingPanel.CacheLength="15"
                                         VirtualizingPanel.IsVirtualizing="True"
@@ -130,11 +129,11 @@
                                                  TextAlignment="Center"
                                              />
                                 </DockPanel>
-                                <DataGrid ItemsSource="{Binding SelectedGroupStudents}"
-                                          DockPanel.Dock="Bottom"
-                                        SelectedItem="{Binding SelectedStudent}"                                  
-                                      AutoGenerateColumns="False"
-                                          
+                                <DataGrid 
+                                    ItemsSource="{Binding SelectedGroupStudents}"
+                                    DockPanel.Dock="Bottom"
+                                    SelectedItem="{Binding SelectedStudent}"                                  
+                                    AutoGenerateColumns="False"                                          
                                     CanUserAddRows="False"
                                     AlternatingRowBackground="LightBlue"
                                     GridLinesVisibility="Vertical"
@@ -194,8 +193,7 @@
                         Style="{StaticResource ConfirmBrnStyle}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        RenderTransformOrigin="0.5,0.5"
-                        >
+                        RenderTransformOrigin="0.5,0.5">
                     <Button.Background>
                         <SolidColorBrush Color="White" x:Name="Brush"/>
                     </Button.Background>
