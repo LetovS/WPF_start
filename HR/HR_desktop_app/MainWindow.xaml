@@ -239,7 +239,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Директории">
-                        <ListBox ItemsSource="{Binding DiskRoot.DirectoryItems}"
+                        <!--<ListBox ItemsSource="{Binding DiskRoot.DirectoryItems}"
                                  SelectedItem="{Binding SelectedDirectory}"
                                  SelectedIndex="0">
                             <ListBox.ItemTemplate>
@@ -248,7 +248,20 @@
                                 </DataTemplate>
 
                             </ListBox.ItemTemplate>
-                        </ListBox>
+                        </ListBox>-->
+                        <TreeView ItemsSource="{Binding DiskRoot.DirectoryItems}">
+                            <TreeView.ItemTemplate>
+                                <!--<DataTemplate DataType="vm:DirectoryViewModel">
+                                    <TextBlock Text="{Binding Name}" ToolTip="{Binding CreationTime}"/>
+                                </DataTemplate>-->
+                                <HierarchicalDataTemplate DataType="vm:DirectoryViewModel" ItemsSource="{Binding DirectoryItems}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <fa:ImageAwesome Height="12" Icon="Regular_Folder" Foreground="Blue"/>
+                                        <TextBlock Text="{Binding Name}" Margin="5,0"/>
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+                            </TreeView.ItemTemplate>
+                        </TreeView>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Файлы">
                         <ListBox ItemsSource="{Binding SelectedDirectory.Filies, Mode=OneWay}"

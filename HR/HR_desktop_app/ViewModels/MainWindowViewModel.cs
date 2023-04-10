@@ -135,7 +135,7 @@ namespace HR_desktop_app.ViewModels
         #endregion
 
         #region Работа с каталогом папок
-        public DirectoryViewModel DiskRoot { get; } = new DirectoryViewModel("c:\\");
+        public DirectoryViewModel DiskRoot { get; } = new DirectoryViewModel("d:\\");
 
         private DirectoryViewModel _SelectedDirectory;
         public DirectoryViewModel SelectedDirectory
