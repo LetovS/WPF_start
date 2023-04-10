@@ -29,129 +29,136 @@
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl SelectedIndex="0">
             <TabItem Header="Работа с тестовыми данными">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="240"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <GroupBox Grid.Column="0" Header="Группы">
-                        <DockPanel>
-                            <DockPanel.Resources>
-                                <CollectionViewSource 
+                <DockPanel >
+                    <StatusBar DockPanel.Dock="Bottom" Height="25">
+                        <TextBlock Text="{Binding TotalTime}" Width="90"/>
+                    </StatusBar>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Grid.Column="0" Header="Группы">
+                            <DockPanel>
+                                <DockPanel.Resources>
+                                    <CollectionViewSource 
                                     x:Key="GroupsCollection"
                                     x:Name="GroupsCollection"
                                     Source="{Binding Groups}"
                                     Filter="GroupsCollectionFilter"/>
-                            </DockPanel.Resources>
-                            <DockPanel Margin="0,5">
-                                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
-                                    <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
-                                    <TextBlock Grid.Column="0"
+                                </DockPanel.Resources>
+                                <DockPanel Margin="0,5">
+                                    <DockPanel DockPanel.Dock="Top" Margin="0,0,0,5">
+                                        <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
+                                        <TextBlock Grid.Column="0"
                                                    Text="Поиск по группам:"
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
-                                    <TextBox Grid.Column="1"
+                                        <TextBox Grid.Column="1"
                                                  x:Name="GroupNameFilterText"
                                                  Margin="0,0,5,0"
                                                 TextChanged="OnGroupsTextChanged"
                                                  FontStyle="Italic"
                                                  FontWeight="Light"
                                                  TextAlignment="Center"/>
-                                </DockPanel>
-                                <GroupBox Header="Действия с группами" DockPanel.Dock="Bottom">
-                                    <UniformGrid Columns="2" Margin="0,5">
-                                        <Button                                                                                
+                                    </DockPanel>
+                                    <GroupBox Header="Действия с группами" DockPanel.Dock="Bottom">
+                                        <UniformGrid Columns="2" Margin="0,5">
+                                            <Button                                                                                
                                         Command="{Binding AddGroupCommand}"
                                         Content="Add"
                                         Margin="5,0"
                                         Style="{StaticResource ConfirmBrnStyle}">
-                                        </Button>
-                                        <Button Content="Delete"   
+                                            </Button>
+                                            <Button Content="Delete"   
                                         Command="{Binding DeleteGroupCommand}"
                                         CommandParameter="{Binding SelectedGroup}"
                                         Margin="5,0"
                                         Style="{StaticResource DangerousBtnStyle}"/>
-                                    </UniformGrid>
-                                </GroupBox>
-                                <ListBox
+                                        </UniformGrid>
+                                    </GroupBox>
+                                    <ListBox
                                         DockPanel.Dock="Bottom"
                                          ItemsSource="{Binding Source={StaticResource GroupsCollection}}"
                                          SelectedItem="{Binding SelectedGroup}"
                                          SelectedIndex="0"
                                          MaxHeight="270"                                        
                                          Margin="0,0,5,0"
+                                    VirtualizingPanel.CacheLength="12"
                                     VirtualizingPanel.IsContainerVirtualizable="True"
                                     VirtualizingPanel.IsVirtualizing="True"
                                     VirtualizingPanel.VirtualizationMode="Recycling">
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VirtualizingStackPanel />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate DataType="std:Group">
-                                            <UniformGrid Columns="2">
-                                                <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
-                                                <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate DataType="std:Group">
+                                                <UniformGrid Columns="2">
+                                                    <TextBlock Text="{Binding Name}" x:Name="Back" HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="{Binding Students.Count, StringFormat=[Студентов: {0}]}"
                                                        Margin="10,0,0,0"
                                                        HorizontalAlignment="Left"/>
-                                            </UniformGrid>
-                                            <DataTemplate.Triggers>
-                                                <DataTrigger Binding="{Binding Students.Count}" Value="0">
-                                                    <Setter TargetName="Back" Property="Foreground" Value="Red"/>
-                                                </DataTrigger>
-                                            </DataTemplate.Triggers>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </DockPanel>                            
-                        </DockPanel>
-                    </GroupBox>
-                    <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
-                        <DockPanel>
-                            <DockPanel DockPanel.Dock="Top" Margin="0,4">
-                                <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
-                                <TextBlock Grid.Column="0"
+                                                </UniformGrid>
+                                                <DataTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding Students.Count}" Value="0">
+                                                        <Setter TargetName="Back" Property="Foreground" Value="Red"/>
+                                                    </DataTrigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </DockPanel>
+                            </DockPanel>
+                        </GroupBox>
+                        <GroupBox Header="{Binding SelectedGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" Grid.Column="1">
+                            <DockPanel>
+                                <DockPanel DockPanel.Dock="Top" Margin="0,4">
+                                    <fa:ImageAwesome Height="12" Icon="Solid_Search" Margin="3,0" Foreground="Blue"/>
+                                    <TextBlock Grid.Column="0"
                                                    Text="Поиск студентов:"
                                                    VerticalAlignment="Center"
                                                    Margin="0,0,5,0" />
-                                <TextBox Grid.Column="1"
+                                    <TextBox Grid.Column="1"
                                                  Margin="0,0,5,0"
                                                  FontStyle="Italic"
                                                  FontWeight="Light"
                                                  TextAlignment="Center"/>
-                            </DockPanel>
-                            <DataGrid ItemsSource="{Binding SelectedGroup.Students}" DockPanel.Dock="Bottom"
+                                </DockPanel>
+                                <DataGrid ItemsSource="{Binding SelectedGroup.Students}" DockPanel.Dock="Bottom"
                                     SelectedItem="{Binding SelectedGroup.Students}"                                  
                                       AutoGenerateColumns="False"  
                                     CanUserAddRows="False"
                                     AlternatingRowBackground="LightBlue"
                                     GridLinesVisibility="Vertical"
                                     VerticalGridLinesBrush="Black">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
-                                    <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>
-                                    <!--<DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
-                                    <DataGridTemplateColumn Header="Дата рождения">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate DataType="std:Student">
-                                                <TextBlock Text="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                        <DataGridTemplateColumn.CellEditingTemplate>
-                                            <DataTemplate DataType="std:Student">
-                                                <DatePicker SelectedDate="{Binding Birthday}"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellEditingTemplate>
-                                    </DataGridTemplateColumn>
-                                    <DataGridTextColumn Header="Группа" IsReadOnly="True" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
-                                    <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </DockPanel>
-                    </GroupBox>
-                </Grid>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Фамилия" Binding="{Binding SurName}" IsReadOnly="True"/>
+                                        <!--<DataGridTextColumn Header="Дата рождения" Width="Auto" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>-->
+                                        <DataGridTemplateColumn Header="Дата рождения">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate DataType="std:Student">
+                                                    <TextBlock Text="{Binding Birthday, StringFormat=dd.mm.yyyy}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate DataType="std:Student">
+                                                    <DatePicker SelectedDate="{Binding Birthday}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="Группа" IsReadOnly="True" Binding="{Binding DataContext.SelectedGroup.Name, RelativeSource={RelativeSource AncestorType=DataGrid}, StringFormat='   {0}   '}"/>
+                                        <DataGridTextColumn Header="Информация" Binding="{Binding Description, TargetNullValue=Нет данных, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </DockPanel>
+                        </GroupBox>
+                    </Grid>
+                </DockPanel>
+                
+                
             </TabItem>
             <TabItem Header="Коллекция смешенного типа">
                 <Grid>
@@ -179,7 +186,7 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Any themes of learn">
-                <Button Content="Test" 
+                <!--<Button Content="Test" 
                         Style="{StaticResource ConfirmBrnStyle}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -221,7 +228,8 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
-                </Button>
+                </Button>-->
+                <TextBlock Text="{Binding Source={x:Static l:App.IsDeveloping}}"/>
             </TabItem>
         </TabControl>
     </DockPanel>

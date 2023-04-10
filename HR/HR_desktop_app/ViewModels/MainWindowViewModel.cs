@@ -8,6 +8,7 @@ using Faker;
 using HR_desktop_app.Data.GeneratorFakeStudents;
 using System.Windows.Input;
 using HR_desktop_app.Infrastructure.Commands;
+using System.Diagnostics;
 
 namespace HR_desktop_app.ViewModels
 {
@@ -50,6 +51,14 @@ namespace HR_desktop_app.ViewModels
             get => _SelectedStudent;
             set => Set(ref _SelectedStudent, value);
         }
+
+        private double _TotalTime;
+        public double TotalTime
+        {
+            get => _TotalTime;
+            set => Set(ref _TotalTime, value);
+        }
+
         #endregion
         #region Команды
         public ICommand AddGroupCommand { get; }
@@ -101,10 +110,14 @@ namespace HR_desktop_app.ViewModels
 
         public MainWindowViewModel()
         {
+            Stopwatch sw;
+
+
             #region Получение тестовых данных
             var rnd = new Random();
-
-            Group[] groups = new Group[rnd.Next(5, 20)];
+            sw = Stopwatch.StartNew();
+            int count = App.IsDeveloping ? 20 : 10000;
+            Group[] groups = new Group[rnd.Next(10, count)];
 
             for (int i = 0; i < groups.Length; i++)
             {
@@ -114,7 +127,8 @@ namespace HR_desktop_app.ViewModels
                 };
                 groups[i].Students = GeneratorStudents.GetStudents(rnd.Next(10, 30), groups[i]);
             }
-
+            sw.Stop();
+            TotalTime = sw.Elapsed.TotalSeconds;
             Groups = new ObservableCollection<Group>(groups);
 
             var composite = new List<object>();

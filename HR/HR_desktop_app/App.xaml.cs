@@ -13,5 +13,12 @@ namespace HR_desktop_app
     /// </summary>
     public partial class App : Application
     {
+        public static bool IsDeveloping { get; private set; } = true;
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            IsDeveloping = false;
+            base.OnStartup(e);
+        }
     }
 }
