@@ -9,8 +9,12 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Data\" />
     <Folder Include="Views\Windows\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Faker.Net" Version="2.0.154" />
+    <PackageReference Include="FontAwesome5" Version="2.1.11" />
   </ItemGroup>
 
 </Project>

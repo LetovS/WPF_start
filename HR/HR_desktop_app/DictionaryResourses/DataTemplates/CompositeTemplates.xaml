@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:std="clr-namespace:HR_desktop_app.Models.TestModelStudents"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <DataTemplate DataType="{x:Type std:Student}">
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="{Binding Name}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type std:Group}">
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock Text="{Binding Name}"/>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type sys:String}">
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <TextBlock>
+                <Run Foreground="Red" FontWeight="Bold">Строка:</Run> <TextBlock Text="{Binding}"/>
+            </TextBlock>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type sys:Int32}">
+        <TextBlock>
+            Чисо <TextBlock Text="{Binding}"/>
+        </TextBlock>
+    </DataTemplate>
+</ResourceDictionary>

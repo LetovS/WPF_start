@@ -5,6 +5,12 @@
              xmlns:cm="clr-namespace:HR_desktop_app.Infrastructure.Commands"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <cm:StaticCommandCloseApp x:Key="CloseApp"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DictionaryResourses\Styles\ButtonStyles.xaml"/>
+                <ResourceDictionary Source="DictionaryResourses\Styles\MyOwnStyleButton.xaml"/>
+                <ResourceDictionary Source="DictionaryResourses\Styles\MyOwnButton\MyBtns.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
