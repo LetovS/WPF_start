@@ -11,7 +11,7 @@ namespace HR_desktop_app.Data.GeneratorFakeStudents
     /// <summary>
     /// Генератор персон.
     /// </summary>
-    internal static class GeneratorStudents
+    public static class GeneratorStudents
     { 
         /// <summary>
         /// Генерация студентов группы.

@@ -2,7 +2,7 @@
 
 namespace HR_desktop_app.Models.TestModelStudents
 {
-    internal class Group
+    public class Group
     {
         public string Name { get; set; }
         public ICollection<Student> Students { get; set; }

@@ -2,7 +2,7 @@
 
 namespace HR_desktop_app.Models.TestModelStudents
 {
-    internal class Student
+    public class Student
     {
         public string Name { get; set; }
         public string SurName { get; set; }
