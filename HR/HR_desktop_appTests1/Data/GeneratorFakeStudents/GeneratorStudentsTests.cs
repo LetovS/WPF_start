@@ -15,12 +15,11 @@ namespace HR_desktop_app.Data.GeneratorFakeStudents.Tests
         [DataRow(5,5)]
         [DataRow(10, 10)]
         [DataRow(0, 0)]
-        [DataRow(-1, 1)]
+        [DataRow(-1, 0)]
         public void GetStudentsTest_ShouldWork(int count, int expected)
         {
 
             //Arrenge
-
 
             //Act
             var actual = GeneratorStudents.GetStudents(count, null);
