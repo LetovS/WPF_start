@@ -12,16 +12,21 @@ namespace HR_desktop_app.Data.GeneratorFakeStudents.Tests
     public class GeneratorStudentsTests
     {
         [TestMethod()]
-        public void GetStudentsTest()
+        [DataRow(5,5)]
+        [DataRow(10, 10)]
+        [DataRow(0, 0)]
+        [DataRow(-1, 1)]
+        public void GetStudentsTest_ShouldWork(int count, int expected)
         {
 
             //Arrenge
 
 
             //Act
-
+            var actual = GeneratorStudents.GetStudents(count, null);
 
             //Assert
+            Assert.AreEqual(expected, actual.Count);
         }
     }
 }
