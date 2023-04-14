@@ -5,11 +5,15 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HR_desktop_app", "HR\HR_desktop_app\HR_desktop_app.csproj", "{68A457B3-6E58-4B0B-B57B-B30B547E4C3C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{96FCBAE2-C567-49C7-8609-EFBFC0DA3962}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestsProject", "TestsProject", "{96FCBAE2-C567-49C7-8609-EFBFC0DA3962}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsole", "Tests\TestConsole\TestConsole.csproj", "{495C2105-8BAD-4D03-95FC-035D1FE5FED5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWPF", "Tests\TestWPF\TestWPF.csproj", "{40F05BB2-4994-4573-9991-5B3E4B03D334}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestWPF", "Tests\TestWPF\TestWPF.csproj", "{40F05BB2-4994-4573-9991-5B3E4B03D334}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BB3C0BC9-04B4-48C6-90E4-5F7319B5A8B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HR_desktop_app_Test", "HR_desktop_app_Test", "{85C4B4D5-C864-46FA-AEDF-971117897B64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{495C2105-8BAD-4D03-95FC-035D1FE5FED5} = {96FCBAE2-C567-49C7-8609-EFBFC0DA3962}
 		{40F05BB2-4994-4573-9991-5B3E4B03D334} = {96FCBAE2-C567-49C7-8609-EFBFC0DA3962}
+		{85C4B4D5-C864-46FA-AEDF-971117897B64} = {BB3C0BC9-04B4-48C6-90E4-5F7319B5A8B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9FE03F85-35BC-4E60-B957-BA0E1C01241F}
